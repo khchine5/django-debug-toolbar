@@ -4,10 +4,12 @@ from django.http import HttpResponseBadRequest
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 
+from debug_toolbar.decorators import require_show_toolbar
 from debug_toolbar.panels.sql.forms import SQLSelectForm
 
 
 @csrf_exempt
+@require_show_toolbar
 def sql_select(request):
     """Returns the output of the SQL SELECT statement"""
     form = SQLSelectForm(request.POST or None)
@@ -33,6 +35,7 @@ def sql_select(request):
 
 
 @csrf_exempt
+@require_show_toolbar
 def sql_explain(request):
     """Returns the output of the SQL EXPLAIN on the given query"""
     form = SQLSelectForm(request.POST or None)
@@ -46,7 +49,7 @@ def sql_explain(request):
         if vendor == 'sqlite':
             # SQLite's EXPLAIN dumps the low-level opcodes generated for a query;
             # EXPLAIN QUERY PLAN dumps a more human-readable summary
-            # See http://www.sqlite.org/lang_explain.html for details
+            # See https://www.sqlite.org/lang_explain.html for details
             cursor.execute("EXPLAIN QUERY PLAN %s" % (sql,), params)
         elif vendor == 'postgresql':
             cursor.execute("EXPLAIN ANALYZE %s" % (sql,), params)
@@ -69,6 +72,7 @@ def sql_explain(request):
 
 
 @csrf_exempt
+@require_show_toolbar
 def sql_profile(request):
     """Returns the output of running the SQL and getting the profiling statistics"""
     form = SQLSelectForm(request.POST or None)

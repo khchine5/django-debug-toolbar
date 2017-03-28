@@ -196,7 +196,7 @@ Path: ``debug_toolbar_line_profiler.panel.ProfilingPanel``
 This package provides a profiling panel that incorporates output from
 line_profiler_.
 
-.. _line_profiler: http://pythonhosted.org/line_profiler/
+.. _line_profiler: https://github.com/rkern/line_profiler
 
 Memcache
 ~~~~~~~~
@@ -309,8 +309,9 @@ Third-party panels must subclass :class:`~debug_toolbar.panels.Panel`,
 according to the public API described below. Unless noted otherwise, all
 methods are optional.
 
-Panels can ship their own templates, static files and views. There is no public
-CSS API at this time.
+Panels can ship their own templates, static files and views. All views should
+be decorated with ``debug_toolbar.decorators.require_show_toolbar`` to prevent
+unauthorized access. There is no public CSS API at this time.
 
 .. autoclass:: debug_toolbar.panels.Panel(*args, **kwargs)
 
