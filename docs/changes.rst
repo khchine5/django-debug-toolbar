@@ -1,16 +1,30 @@
 Change log
 ==========
 
-1.9 (upcoming)
---------------
+UNRELEASED
+----------
+
+* Removed support for Django < 1.11.
+
+1.9.1 (2017-11-15)
+------------------
+
+* Fix erroneous ``ContentNotRenderedError`` raised by the redirects panel.
+
+1.9 (2017-11-13)
+----------------
+
+This version is compatible with Django 2.0 and requires Django 1.8 or
+later.
 
 Bugfixes
 ~~~~~~~~
 
 * The profiling panel now escapes reported data resulting in valid HTML.
+* Many minor cleanups and bugfixes.
 
-1.8
----
+1.8 (2017-05-05)
+----------------
 
 This version is compatible with Django 1.11 and requires Django 1.8 or
 later.
@@ -47,8 +61,8 @@ Bugfixes
   forms rendering.
 * Long SQL statements are now forcibly wrapped to fit on the screen.
 
-1.7
----
+1.7 (2017-03-05)
+----------------
 
 Bugfixes
 ~~~~~~~~
@@ -63,8 +77,8 @@ Bugfixes
 * A few CSS classes have been prefixed with ``djdt-`` to avoid
   conflicting class names.
 
-1.6
----
+1.6 (2016-10-05)
+----------------
 
 The debug toolbar was adopted by jazzband.
 
@@ -82,8 +96,8 @@ Bugfixes
 * The ``DebugToolbarMiddleware`` now also supports Django 1.10's ``MIDDLEWARE``
   setting.
 
-1.5
----
+1.5 (2016-07-21)
+----------------
 
 This version is compatible with Django 1.10 and requires Django 1.8 or later.
 
@@ -98,8 +112,8 @@ Bugfixes
 * Improve the UI slightly.
 * Fix invalid (X)HTML.
 
-1.4
----
+1.4 (2015-10-06)
+----------------
 
 This version is compatible with Django 1.9 and requires Django 1.7 or later.
 
@@ -116,8 +130,8 @@ Bugfixes
 * Response time for requests of projects with numerous media files has
   been improved.
 
-1.3
----
+1.3 (2015-03-10)
+----------------
 
 This is the first version compatible with Django 1.8.
 
@@ -139,8 +153,8 @@ Bugfixes
 * The private copy of jQuery no longer registers as an AMD module on sites
   that load RequireJS.
 
-1.2
----
+1.2 (2014-04-25)
+----------------
 
 New features
 ~~~~~~~~~~~~
@@ -156,8 +170,8 @@ Bugfixes
   This private copy is available in ``djdt.jQuery``. Third-party panels are
   encouraged to use it because it should be as stable as the toolbar itself.
 
-1.1
----
+1.1 (2014-04-12)
+----------------
 
 This is the first version compatible with Django 1.7.
 
@@ -182,8 +196,8 @@ Deprecated features
 * The ``INTERCEPT_REDIRECTS`` setting is superseded by the more generic
   ``DISABLE_PANELS``.
 
-1.0
----
+1.0 (2013-12-21)
+----------------
 
 This is the first stable version of the Debug Toolbar!
 

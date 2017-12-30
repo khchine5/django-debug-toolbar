@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='django-debug-toolbar',
-    version='1.8',
+    version='1.9.1',
     description='A configurable set of panels that display various debug '
                 'information about the current request/response.',
     long_description=open('README.rst', encoding='utf-8').read(),
@@ -17,7 +17,7 @@ setup(
     license='BSD',
     packages=find_packages(exclude=('tests.*', 'tests', 'example')),
     install_requires=[
-        'Django>=1.8',
+        'Django>=1.11',
         'sqlparse>=0.2.0',
     ],
     include_package_data=True,
@@ -26,10 +26,8 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 1.8',
-        'Framework :: Django :: 1.9',
-        'Framework :: Django :: 1.10',
         'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
@@ -37,7 +35,6 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',

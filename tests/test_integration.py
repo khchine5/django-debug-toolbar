@@ -8,6 +8,7 @@ from xml.etree import ElementTree as ET
 
 import django
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.core import signing
 from django.core.checks import Error, run_checks
 from django.template.loader import get_template
 from django.test import RequestFactory, TestCase
@@ -143,7 +144,7 @@ class DebugToolbarIntegrationTestCase(TestCase):
         url = '/__debug__/template_source/'
         data = {
             'template': template.template.name,
-            'template_origin': template.template.origin.name
+            'template_origin': signing.dumps(template.template.origin.name)
         }
 
         response = self.client.get(url, data)
@@ -225,6 +226,17 @@ class DebugToolbarIntegrationTestCase(TestCase):
         response = self.client.get(url)
         self.assertIn(b'id="djDebug"', response.content)
         self.assertNotIn(b'data-store-id', response.content)
+
+    def test_view_returns_template_response(self):
+        response = self.client.get('/template_response/basic/')
+        self.assertEqual(response.status_code, 200)
+
+    @override_settings(DEBUG_TOOLBAR_CONFIG={'DISABLE_PANELS': set()})
+    def test_incercept_redirects(self):
+        response = self.client.get('/redirect/')
+        self.assertEqual(response.status_code, 200)
+        # Link to LOCATION header.
+        self.assertIn(b'href="/regular/redirect/"', response.content)
 
 
 @unittest.skipIf(webdriver is None, "selenium isn't installed")
@@ -375,7 +387,7 @@ class DebugToolbarSystemChecksTestCase(BaseTestCase):
     def test_middleware_factory_functions_supported(self):
         messages = run_checks()
 
-        if django.VERSION[:2] < (1, 10):
+        if django.VERSION[:2] >= (2, 0):
             self.assertEqual(messages, [])
         else:
             self.assertEqual(messages[0].id, '1_10.W001')
