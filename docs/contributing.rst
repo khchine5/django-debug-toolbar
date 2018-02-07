@@ -32,8 +32,8 @@ the libraries required for working on the Debug Toolbar::
 
 You can run now run the example application::
 
-    $ DJANGO_SETTINGS_MODULE=example.settings django-admin migrate
-    $ DJANGO_SETTINGS_MODULE=example.settings django-admin runserver
+    $ DJANGO_SETTINGS_MODULE=example.settings python -m django migrate
+    $ DJANGO_SETTINGS_MODULE=example.settings python -m django runserver
 
 For convenience, there's an alias for the second command::
 
@@ -84,7 +84,7 @@ to 100 characters. You can check for style violations with::
 
     $ make flake8
 
-Import style is enforce by isort. You can sort import automatically with::
+Import style is enforced by isort. You can sort import automatically with::
 
     $ make isort
 
@@ -120,6 +120,14 @@ translatable_strings`` and pushed to Transifex. Once translators have done
 their job, ``.po`` files must be downloaded with ``make update_translations``.
 
 The release itself requires the following steps:
+
+#. Update supported Python and Django versions:
+
+   - ``setup.py`` ``python_requires`` list
+   - ``setup.py`` trove classifiers
+   - ``README.rst``
+
+   Commit.
 
 #. Bump version numbers in ``docs/changes.rst``, ``docs/conf.py``,
    ``README.rst`` and ``setup.py``. Add the release date to
